@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <grammar
   version="1.0"
-  xml:lang="en-US"
+  xml:lang="de-DE"
   root="automationCommands"
   xmlns="http://www.w3.org/2001/06/grammar"
   tag-format="semantics/1.0">
@@ -15,11 +15,8 @@
 
   <rule id="automationCommands">
     <item>
-      <item> turn </item>
-      <item>
-        <ruleref uri="#commandActions" />
-        <tag> out.cmd=rules.latest(); </tag>
-      </item>
+      <item> schalte </item>
+      
       <one-of>
         <item>
           <ruleref uri="#typeActions" />
@@ -31,15 +28,19 @@
         <tag> out.device=rules.latest(); </tag>
       </item>
     </item>
+    <item>
+      <ruleref uri="#commandActions" />
+      <tag> out.cmd=rules.latest(); </tag>
+    </item>
   </rule>
 
   <rule id="commandActions">
     <one-of>
       <item>
-        on <tag> out="ON"; </tag>
+        an <tag> out="AN"; </tag>
       </item>
       <item>
-        off <tag> out="OFF"; </tag>
+        aus <tag> out="AUS"; </tag>
       </item>
     </one-of>
   </rule>
@@ -55,7 +56,7 @@
   <rule id="deviceActions">
     <one-of>
       <item>
-        light <tag> out="LIGHT"; </tag>
+        lampe <tag> out="LAMPE"; </tag>
       </item>
     </one-of>
   </rule>

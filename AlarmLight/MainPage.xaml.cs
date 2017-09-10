@@ -2,11 +2,13 @@
 using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.Devices.Gpio;
+using Windows.Globalization;
 using Windows.Media.SpeechRecognition;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
 // Inspired by: https://www.hackster.io/krvarma/rpivoice-051857
+// SAY: SCHALTE ALARM LAMPE AN / AUS
 
 namespace AlarmLight
 {
@@ -31,13 +33,13 @@ namespace AlarmLight
         // Tag Device
         private const string TAG_DEVICE = "device";
         // On State
-        private const string STATE_ON = "ON";
+        private const string STATE_ON = "AN";
         // Off State
-        private const string STATE_OFF = "OFF";
+        private const string STATE_OFF = "AUS";
         // LED Device
         private const string DEVICE_LED = "LED";
         // Light Device
-        private const string DEVICE_LIGHT = "LIGHT";
+        private const string DEVICE_LIGHT = "LAMPE";
         // Alarm 
         private const string TARGET_ALARM = "ALARM";
 
@@ -103,7 +105,7 @@ namespace AlarmLight
 
             #region GermanSpeech
             // German did not work
-            // recognizer = new SpeechRecognizer(new Language("de-DE"));
+             recognizer = new SpeechRecognizer(new Language("de-DE"));
 
             /*
              * https://microsoft.hackster.io/en-US/krvarma/rpivoice-051857?ref=channel&ref_id=4087_trending___&offset=22
@@ -136,7 +138,7 @@ namespace AlarmLight
             */
             #endregion
 
-            recognizer = new SpeechRecognizer();
+           // recognizer = new SpeechRecognizer();
 
             // Set event handlers
             recognizer.StateChanged += RecognizerStateChanged;
@@ -209,7 +211,7 @@ namespace AlarmLight
                 // Check target location
                 if (target.Equals(TARGET_ALARM))
                 {
-                    Debug.WriteLine("ALARM LIGHT " + (isOn ? STATE_ON : STATE_OFF));
+                    Debug.WriteLine("ALARM LAMPE " + (isOn ? STATE_ON : STATE_OFF));
 
                     // Turn on the alaram light
                     WriteGPIOPin(pin, isOn ? GpioPinValue.Low : GpioPinValue.High);
