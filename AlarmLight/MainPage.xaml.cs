@@ -23,7 +23,8 @@ namespace AlarmLight
 
         // Grammar File
         private const string SRGS_FILE = "Grammar\\SimpleGrammar.xml";
-        // RED Led Pin
+
+        // Lampe Pin
         private const int LIGHT_PIN = 5;
       
         // Tag TARGET
@@ -204,7 +205,7 @@ namespace AlarmLight
             // First check which device the user refers to
             if (device.Equals(DEVICE_LED))
             {
-                
+                // Not implemented
             }
             else if (device.Equals(DEVICE_LIGHT))
             {
